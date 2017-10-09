@@ -1,8 +1,20 @@
 class ExtButton extends HTMLElement {
     constructor() {
         super();
-        this.innerHTML = '<button class="app-drawer__button"></button>';
-        this._button = this.querySelector('button');
+        this.innerHTML = `
+            <template>
+                <button class="button"></button>
+                <style> @import "style/button.css"; </style>
+            </template>
+        `;
+
+        let template = this.querySelector('template'),
+            shadow = this.createShadowRoot(),
+            clone = document.importNode(template.content, true);
+
+        shadow.appendChild(clone);
+
+        this._button = shadow.querySelector('button');
 
         let _hideTimer;
 
@@ -10,14 +22,14 @@ class ExtButton extends HTMLElement {
         switch(role) {
             case 'delCol':
             case 'delRow':
-                this._button.classList.add('app-drawer__button--del');
+                this._button.classList.add('button--del');
                 this._button.innerHTML = '-';
                 this._initMouseHandler();
                 break;
             case 'addCol':
             case 'addRow':
-                this._button.classList.add('app-drawer__button--add');
-                this._button.classList.add(`app-drawer__button--add-${role === 'addRow' ? 'row' : 'col'}`);
+                this._button.classList.add('button--add');
+                this._button.classList.add(`button--add-${role === 'addRow' ? 'row' : 'col'}`);
                 this._button.innerHTML = '+';
                 break;
         }
@@ -58,8 +70,20 @@ class ExtTable extends HTMLElement {
 
         this._resetControls();
 
-        this.innerHTML = '<table class="table-container__table"></table>';
-        this._table = this.querySelector('table');
+        this.innerHTML = `
+            <template>
+                <table class="table"></table>
+                <style> @import "style/table.css"; </style>
+            </template>
+        `;
+
+        let template = this.querySelector('template'),
+            shadow = this.createShadowRoot(),
+            clone = document.importNode(template.content, true);
+
+        shadow.appendChild(clone);
+
+        this._table = shadow.querySelector('table');
 
         this._table.addEventListener('mouseover', event => {
             let target = event.target;
@@ -149,21 +173,31 @@ class AppDrawer extends HTMLElement {
         super();
 
         this.innerHTML =`
-            <ext-button role="delRow"></ext-button>
-            <ext-button role="delCol"></ext-button>
-            <div class="app-drawer__table-container">
-                <ext-table></ext-table>
-                <ext-button role="addCol"></ext-button>
-            </div>
-            <ext-button role="addRow"></ext-button>
+            <template>
+                <ext-button role="delRow"></ext-button>
+                <ext-button role="delCol"></ext-button>
+                <div class="table-container">
+                    <ext-table></ext-table>
+                    <ext-button role="addCol"></ext-button>
+                </div>
+                <ext-button role="addRow"></ext-button>
+
+                <style> @import "style/app-drawer.css"; </style>
+            </template>
         `;
 
-        this.extTable = this.querySelector('ext-table');
-        this.delColBtn = this.querySelector("ext-button[role='delCol']");
-        this.delRowBtn = this.querySelector("ext-button[role='delRow']");
+        let template = this.querySelector('template'),
+            shadow = this.createShadowRoot(),
+            clone = document.importNode(template.content, true);
 
-        this.querySelector("ext-button[role='addRow']").addEventListener('click', () => this.extTable.addRow());
-        this.querySelector("ext-button[role='addCol']").addEventListener('click', () => this.extTable.addColumn());
+        shadow.appendChild(clone);
+
+        this.extTable = shadow.querySelector('ext-table');
+        this.delColBtn = shadow.querySelector("ext-button[role='delCol']");
+        this.delRowBtn = shadow.querySelector("ext-button[role='delRow']");
+
+        shadow.querySelector("ext-button[role='addRow']").addEventListener('click', () => this.extTable.addRow());
+        shadow.querySelector("ext-button[role='addCol']").addEventListener('click', () => this.extTable.addColumn());
         this.delColBtn.addEventListener('click', () => this.extTable.delColumn());
         this.delRowBtn.addEventListener('click', () => this.extTable.delRow());
 
