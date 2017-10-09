@@ -1,0 +1,70 @@
+.app-drawer {
+    width: auto;
+    height: auto;
+}
+
+.app-drawer__table-container {
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+
+.table-container__table {
+    display: inline-block;
+    margin: 2px;
+    border: 1px solid #48AAE6;
+    background-color: #FFF;
+}
+
+.table__cell {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    background-color: #48AAE6;
+}
+
+.app-drawer__button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    -webkit-transition: background-color .5s linear;
+    -moz-transition: background-color .5s linear;
+    -o-transition: background-color .5s linear;
+    transition: background-color .5s linear;
+}
+
+.app-drawer__button--add {
+    background-color: #F3A500;
+}
+
+.app-drawer__button--add-col {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+}
+
+.app-drawer__button--add-row {
+    position: relative;
+    left: 55px;
+    bottom: -46px;
+}
+
+.app-drawer__button--add:hover {
+    background-color: #F6C052;
+    cursor: pointer;
+}
+
+.app-drawer__button--del {
+    background-color: #B20000;
+    position: absolute;
+    visibility: hidden;
+}
+
+.app-drawer__button--del:hover {
+    background-color: #CA4C49;
+    cursor: pointer;
+}
