@@ -23,7 +23,6 @@ class ExtButton extends HTMLElement {
             case 'delCol':
             case 'delRow':
                 this._button.classList.add('button--del');
-                this.classList.add(`button--del-${role === 'delRow' ? 'row' : 'col'}-container`);
                 this._button.innerHTML = '-';
                 this._initMouseHandler();
                 break;
@@ -178,11 +177,9 @@ class AppDrawer extends HTMLElement {
             <template>
                 <ext-button role="delCol"></ext-button>
                 <ext-button role="delRow"></ext-button>
-                <div class="table-group">
-                    <ext-table class="table-container"></ext-table>
-                    <ext-button role="addCol"></ext-button>
-                    <ext-button role="addRow"></ext-button>
-                </div>
+                <ext-table class="table-container"></ext-table>
+                <ext-button role="addCol"></ext-button>
+                <ext-button role="addRow"></ext-button>
 
                 <style> @import "style/app-drawer.css"; </style>
             </template>
