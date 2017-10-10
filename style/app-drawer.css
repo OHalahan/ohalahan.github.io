@@ -1,16 +1,30 @@
 .table-container {
     float: left;
-    margin-top: 50px;
-    margin-left: 50px;
 }
 
 .button--add-col-container {
     float: left;
-    margin-top: 55px;
+    margin-top: 5px;
 }
 
 .button--add-row-container {
     clear: left;
-    margin-left: 55px;
+    margin-left: 5px;
     display: block;
+}
+
+.button--del-col-container {
+    height: 50px;
+    width: 100vw;
+    display: block;
+}
+
+.button--del-row-container {
+    float: left;
+    height: 100vh;
+    width: 50px;
+}
+
+.table-group {
+    float: left;
 }
